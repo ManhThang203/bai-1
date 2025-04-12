@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blog</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/prismjs@1.30.0/themes/prism-okaidia.css">
+</head>
+<body>
+    <h1>Xây dựng Todo List đơn giản với HTML, CSS, JavaScript</h1>
+    <h2>Tạo giao diện với HTML</h2>
+    <!-- Tạo giao diện HTML -->
+    <pre>
+        <code class="lang-html">
+&lt;!DOCTYPE html&gt;
+&lt;html lang=&quot;en&quot;&gt;
+&lt;head&gt;
+  &lt;meta charset=&quot;UTF-8&quot;&gt;
+  &lt;title&gt;Todo List&lt;/title&gt;
+  &lt;link rel=&quot;stylesheet&quot; href=&quot;style.css&quot;&gt;
+&lt;/head&gt;
+&lt;body&gt;
+  &lt;div class=&quot;todo-container&quot;&gt;
+    &lt;h1&gt;Todo List&lt;/h1&gt;
+    &lt;div class=&quot;input-section&quot;&gt;
+      &lt;input type=&quot;text&quot; id=&quot;todo-input&quot; placeholder=&quot;Nhập việc cần l&agrave;m&quot;&gt;
+      &lt;button id=&quot;add-btn&quot;&gt;Th&ecirc;m&lt;/button&gt;
+    &lt;/div&gt;
+    &lt;ul id=&quot;todo-list&quot;&gt;&lt;/ul&gt;
+  &lt;/div&gt;
+
+  &lt;script src=&quot;script.js&quot;&gt;&lt;/script&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+        </code>
+    </pre>
+    <!-- Tạo Giao diện CSS -->
+    <h2>Tạo giao diện với CSS</h2>
+     <pre>
+         <code class="lang-css">
+/* style.css */
+body {
+  font-family: Arial, sans-serif;
+  background: #f2f2f2;
+  display: flex;
+  justify-content: center;
+  padding-top: 50px;
+}
+
+.todo-container {
+  background: white;
+  padding: 20px 30px;
+  border-radius: 10px;
+  box-shadow: 0 5px 10px rgba(0,0,0,0.1);
+  width: 300px;
+}
+
+h1 {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.input-section {
+  display: flex;
+  gap: 10px;
+}
+
+#todo-input {
+  flex: 1;
+  padding: 8px;
+}
+
+#add-btn {
+  padding: 8px 12px;
+  cursor: pointer;
+}
+
+ul {
+  list-style-type: none;
+  padding: 0;
+  margin-top: 20px;
+}
+
+li {
+  padding: 8px;
+  border-bottom: 1px solid #ccc;
+  display: flex;
+  justify-content: space-between;
+}
+
+li button {
+  background: red;
+  color: white;
+  border: none;
+  padding: 4px 8px;
+  cursor: pointer;
+  border-radius: 4px;
+}
+         </code>
+     </pre>
+     <!-- Tạo giao diện JavaScript -->
+    <h2>Tạo giao diện với JavaScript</h2>
+    <pre>
+        <code class="lang-js">
+// script.js
+document.addEventListener('DOMContentLoaded', () =&gt; {
+  const input = document.getElementById('todo-input');
+  const addBtn = document.getElementById('add-btn');
+  const todoList = document.getElementById('todo-list');
+
+  // Th&ecirc;m việc mới
+  addBtn.addEventListener('click', () =&gt; {
+    const task = input.value.trim();
+    if (task === '') return;
+
+    // Tạo thẻ li
+    const li = document.createElement('li');
+    li.innerHTML = `
+      &lt;span&gt;${task}&lt;/span&gt;
+      &lt;button class=&quot;delete-btn&quot;&gt;X&oacute;a&lt;/button&gt;
+    `;
+
+    // Gắn sự kiện x&oacute;a
+    li.querySelector('.delete-btn').addEventListener('click', () =&gt; {
+      todoList.removeChild(li);
+    });
+
+    // Th&ecirc;m v&agrave;o danh s&aacute;ch
+    todoList.appendChild(li);
+
+    // Reset &ocirc; nhập
+    input.value = '';
+  });
+});
+        </code>
+    </pre>
+    <script src="https://cdn.jsdelivr.net/npm/prismjs@1.30.0/prism.min.js"></script>
+</body>
+</html>
